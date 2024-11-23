@@ -4,23 +4,39 @@
 fun main (args: Array<String>) {
 
 	val find: Int = callInt()
+	var facs: MutableList<Int> = mutableListOf()
 
-	val fFac: Int = findPrime(find)
-	val sFac: Int = findPrime(find/fFac)
-
-	if (fFac==0||sFac==0) {
-		println("Interal Error, please run the program again.")
-		return
+	while (test(facs)!=find){
+		println(test(facs)); println(facs)
+		if(facs.size!=0) findPrime(find)
+		else
 	}
+//	val fFac: Int = findPrime(find)
+//	val sFac: Int = findPrime(find/fFac)
+
+}
+
+fun remAd (n: Int, col: MutableList<Int>): Int {
+	if (col.size==0) return n
 	else {
-		println("The factors of $find are $fFac and $sFac")
+		val a: Int = n/col[0]
+		col.remove(col[0])
+		return remAd(a, col)
 	}
+}
 
+fun test (col: MutableList<Int>): Int{
+	var total: Int = 1
+	for (i in col) {
+		total *= i
+	}
+	return total
 }
 
 fun callInt (): Int {
 	println("Enter a number and this program will find all the prime factors if there are any.\n")
 	val n = readLine()?.toInt()!!
+	println(isPrime(n))
 	if (isPrime(n)) {
 		println("That number is already a prime, the factors are 1 and $n.")
 		return callInt()
@@ -44,7 +60,7 @@ fun findPrime (n: Int): Int {
 fun isPrime(n: Int): Boolean {
 	if (n <= 2) return true
 
-	for (i in 2..n) {
+	for (i in 2 until n) {
 		if(n%i == 0) return false
 	}
 

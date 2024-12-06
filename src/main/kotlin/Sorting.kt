@@ -25,6 +25,8 @@ fun bubbleSort (n: MutableList<Int>): MutableList<Int> {
 fun mergeSort (n: MutableList<Int>): MutableList<Int> {
 	//! Current problem is that it splits the entire array into arrays of 2 ([[1,5], [6,2]]), so after the first sort it would look like this ([[1,2], [5,6]]) - and would try to sort the same breakdown over and over again. Need to loop then reinitialize nest with half again and sort, then loop then reinitialize and sort again, over and over until the array.size = 1.
 
+	//? Could use overloading to set two functions biased per the passed parameter. (List == prepare and pass | Array == perform sorting until finished, convert, return [recursive])
+
 	val nest: Array<IntArray> = Array(n.size/2) { IntArray(2) }
 
 	if (isSorted(n.toMutableList()))

@@ -1,2 +1,2 @@
-# coding_practice_kotlin
+# coding_practice_rust
  
